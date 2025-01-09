@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headache Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-notes-medical"></i> Headache Tracker</h1>
+        
+        <button type="button" id="toggleForm" class="secondary-button">
+            <i class="fas fa-chevron-down"></i> Log a headache
+        </button>
+
+        <form id="headacheForm">
+            <div class="form-group">
+                <label for="date"><i class="far fa-calendar"></i> Date:</label>
+                <input type="date" id="date" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="time"><i class="far fa-clock"></i> Time:</label>
+                <input type="time" id="time" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="intensity"><i class="fas fa-thermometer-half"></i> Pain Intensity:</label>
+                <div class="intensity-container">
+                    <input type="range" id="intensity" min="1" max="10" value="5">
+                    <span id="intensityValue">5</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="water"><i class="fas fa-glass-water"></i> Water Intake:</label>
+                <input type="number" id="water" min="0" placeholder="Number of glasses">
+            </div>
+            
+            <div class="form-group">
+                <label for="computerTime"><i class="fas fa-laptop"></i> Screen Time:</label>
+                <input type="number" id="computerTime" min="0" step="0.5" placeholder="Hours">
+            </div>
+
+            <div class="form-group">
+                <label for="inOffice"><i class="fas fa-building"></i> In Office:</label>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="inOffice">
+                    <span class="toggle-slider"></span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="notes"><i class="far fa-comment-alt"></i> Notes:</label>
+                <textarea id="notes" placeholder="Add any additional observations..."></textarea>
+            </div>
+            
+            <button type="submit"><i class="fas fa-save"></i> Save Entry</button>
+        </form>
+
+        <div class="charts-grid">
+            <div class="chart-card" draggable="true" data-chart-type="intensity">
+                <h3>Headache Intensity</h3>
+                <canvas id="intensityChart"></canvas>
+            </div>
+            <div class="chart-card" draggable="true" data-chart-type="water">
+                <h3>Water Intake</h3>
+                <canvas id="waterChart"></canvas>
+            </div>
+            <div class="chart-card" draggable="true" data-chart-type="computerTime">
+                <h3>Screen Time</h3>
+                <canvas id="computerTimeChart"></canvas>
+            </div>
+            <div class="chart-card" draggable="true" data-chart-type="inOffice">
+                <h3>Office Days</h3>
+                <canvas id="inOfficeChart"></canvas>
+            </div>
+        </div>
+
+        <div class="import-export-buttons">
+            <button type="button" id="exportBtn" class="secondary-button">
+                <i class="fas fa-download"></i> Export CSV
+            </button>
+            <label for="importFile" class="secondary-button">
+                <i class="fas fa-upload"></i> Import CSV
+            </label>
+            <input type="file" id="importFile" accept=".csv" style="display: none;">
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
